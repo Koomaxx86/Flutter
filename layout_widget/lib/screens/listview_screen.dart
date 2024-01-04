@@ -3,13 +3,14 @@ import 'package:layout_widget/models/animal.dart';
 
 class ListViewScreen extends StatefulWidget {
   final List<Animal> list;
-  const ListViewScreen({super.key, required this.list});
+  const ListViewScreen({super.key, required this.list}); 
 
   @override
   State createState() => _ListViewScreenState();
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

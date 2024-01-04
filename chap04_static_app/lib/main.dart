@@ -1,112 +1,78 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('포켓몬'),
+        ),
+        body:  ListView(
+          children: const [
+            CardItem(
+              imagePath: 'image/img01.jpg',
+              title: '파이리',
+              subtitle: '불 포켓몬',
+            ),
+            CardItem(
+              imagePath: 'image/img02.jpg',
+              title: '이상해씨',
+              subtitle: '풀 포켓몬',
+            ),
+            CardItem(
+              imagePath: 'image/img03.jpg',
+              title: '꼬부기',
+              subtitle: '물 포켓몬',
+            ),
+            // Add more CardItem widgets as needed
+          ],
+        ),
       ),
-      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class CardItem extends StatelessWidget {
+  final String imagePath;
+  final String title;
+  final String subtitle;
+
+  const CardItem({
+    Key? key,
+    required this.imagePath,
+    required this.title,
+    required this.subtitle,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // App Bar
-      appBar: AppBar(
-        title: Text('My App'),
-      ),
-      // Body
-      body: Center(
-          child: Column(
+    return Card(
+      child: Column(
         children: [
           Image.asset(
-            "image/img01.jpg", // 이미지 경로
-            width: 300,
-            height: 300,
+            imagePath,
+            width: 200,
+            height: 200,
             fit: BoxFit.contain,
           ),
-          const Text(
-            '강아지',
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 50,
-              color: Colors.orange,
-            ),
-          ),
-        ],
-      )),
-
-      // floatingActionsButton
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('click!');
-        },
-        child: const Icon(Icons.person),
-      ),
-      // drawer (사이드바)
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+          ListTile(
+            title: Text(
+              title,
+              style: TextStyle(
+                fontFamily: 'Diphylleia',
+                fontSize: 24,
+                color: Colors.orange,
               ),
-              child: Text("메뉴 목록"),
             ),
-            ListTile(
-              title: const Text('메뉴 1'),
-              onTap: () {
-                print('click menu1!');
-              },
-            ),
-            ListTile(
-              title: const Text('메뉴 2'),
-              onTap: () {
-                print('click menu2!');
-              },
-            ),
-          ],
-        ),
-      ),
-      // BottomNavitaionBar
-      bottomNavigationBar: BottomNavigationBar(
-        // 아이템 2개 이상
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'user',
+            subtitle: Text(subtitle),
           ),
         ],
-      ),
-
-      // BottomSheet
-      bottomSheet: Container(
-        height: 20,
-        color: Colors.grey,
-        child: const Center(child: Text('Bottom')),
       ),
     );
   }

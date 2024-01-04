@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,15 +54,11 @@ class MyHomePage extends StatelessWidget {
             ),
             ListTile(
               title: const Text('메뉴 1'),
-              onTap: () {
-                print('click menu1!');
-              },
+              onTap: () { print('click menu1!'); },
             ),
             ListTile(
               title: const Text('메뉴 2'),
-              onTap: () {
-                print('click menu2!');
-              },
+              onTap: () { print('click menu2!'); },
             ),
           ],
         ),
@@ -69,7 +67,7 @@ class MyHomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         // 아이템 2개 이상
         items: const [
-          BottomNavigationBarItem(
+           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
@@ -90,6 +88,8 @@ class MyHomePage extends StatelessWidget {
         color: Colors.grey,
         child: const Center(child: Text('Bottom')),
       ),
+
     );
   }
+
 }

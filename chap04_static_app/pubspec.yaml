@@ -22,6 +22,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+
   uses-material-design: true
   # 이미지 경로 추가
   assets: 
@@ -31,6 +32,6 @@ flutter:
     # - image/img03.jpg
   # 폰트 경로 추가
   fonts:
-    - family: Roboto
+    - family: Diphylleia
       fonts:
-        - asset: font/Roboto-Regular.ttf
+        - asset: font/Diphylleia-Regular.ttf

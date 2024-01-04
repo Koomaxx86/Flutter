@@ -6,12 +6,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo', // 앱 이름
+      title: 'Flutter Demo',   // 앱 이름
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
       // 홈 화면 위젯 지정
-      home: MyHomePage(title: 'Flutter Demo Home Page'), // AppBar 타이틀
+      home: MyHomePage(title: 'Flutter Demo Home Page'),  // AppBar 타이틀
     );
   }
 }
