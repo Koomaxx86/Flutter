@@ -295,6 +295,14 @@ class _JoinScreenState extends State<JoinScreen> {
                         decoration: InputDecoration(
                           prefixIcon: ElevatedButton(
                                         onPressed: () {
+                                          // // 방법 1
+                                          // // String ➡ int
+                                          // int newCount = int.tryParse(_countController.text) ?? 1;
+                                          // newCount++;
+                                          // // int ➡ String
+                                          // _countController.text = newCount.toString();
+
+                                          // 방법 2
                                           if( _maxCount < _count ) {
                                             return;
                                           }
@@ -319,9 +327,20 @@ class _JoinScreenState extends State<JoinScreen> {
                                       ),
                         ),
                         onChanged: (value) {
-                          int newValue = int.tryParse(value) ?? _minCount;
+                          // int.parse("10") : String ➡ int 로 변환
+                          // int.parse("")   : 빈 문자열을 int 변환하면 예외발생
+                          // int.tryParse("숫자가아닌문자열") ➡ 예외 대신 null 로 반환
+                          int newValue = int.tryParse(value) ?? -1;
+                          // 값이 없을 때
+                          if( newValue == -1 ) { 
+                            setState(() { _count = 1; });
+                            return; 
+                          } 
                           if( newValue >= _maxCount ) {newValue = _maxCount;}
                           if( newValue < _minCount ) {newValue = _minCount;}
+                          setState(() {
+                            _count = newValue;
+                          });
                           _countController.text = newValue.toString();
                         },
                       ),

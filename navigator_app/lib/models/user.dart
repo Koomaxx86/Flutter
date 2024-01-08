@@ -1,8 +1,9 @@
+
 class User {
   String? id;
   String? name;
   int? age;
-  String? gender;
+  String?  gender;
 
   // 생성자
   User({
@@ -11,4 +12,5 @@ class User {
     this.age,
     this.gender,
   });
+  
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigator_app/screens/community/community_screen.dart';
 import 'package:navigator_app/screens/home_screen.dart';
+import 'package:navigator_app/screens/main_screen.dart';
 import 'package:navigator_app/screens/user/user_screen.dart';
 
 void main() {
@@ -19,11 +20,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const FirstScreen(),
-      initialRoute: '/home',
+      initialRoute: '/main',
       routes: {
-        '/home': (context) => HomeScreen(),
-        '/user': (context) => UserScreen(),
-        '/community': (context) => CommunityScreen(),
+        '/main' : (context) => MainScreen(),
+        '/home' : (context) => HomeScreen(),
+        '/user' : (context) => UserScreen(),
+        '/community' : (context) => CommunityScreen(),
       },
     );
   }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_data_app/file_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   // SharedPrefences 공유 환경설정에 데이터 저장 예제
   runApp(const MyApp());
-  //
+  // 
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: 
+          // const MyHomePage(title: 'Flutter Demo Home Page'),
+          const FileApp(),
     );
   }
 }
@@ -65,7 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
       var value = pref.getInt(key);
       _counter = value ?? 0;
     });
+    
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ),
+      ), 
     );
   }
 }
