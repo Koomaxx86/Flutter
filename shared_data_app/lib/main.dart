@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   // SharedPrefences 공유 환경설정에 데이터 저장 예제
   runApp(const MyApp());
-  // 
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: 
-          // const MyHomePage(title: 'Flutter Demo Home Page'),
           const FileApp(),
     );
   }
@@ -41,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     // 공유 환경설정에 저장해놓은 데이터 가져오기
-    getData();
+    _getData();
   }
 
   void _incrementCounter() {
@@ -60,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // SharedPrefeces 데이터 가져오는 함수
-  void getData() async {
+  void _getData() async {
     var key = 'count';
     SharedPreferences pref = await SharedPreferences.getInstance();
 

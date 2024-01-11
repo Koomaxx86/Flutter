@@ -30,6 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # 이미지 슬라이드
+  carousel_slider: ^4.2.1
+  # 포맷 관련 
+  intl: ^0.19.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -59,7 +64,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+      - images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

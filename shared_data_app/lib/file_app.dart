@@ -82,6 +82,30 @@ class _FileAppState extends State<FileApp> {
     File(dir.path + '/test.txt').writeAsStringSync(file);
   }
 
+  // 파일 데이터를 갱신하는 함수
+  Future<bool> deleteListFile(int index) async {
+    // itemList 에서 index 에 해당하는 데이터 삭제
+    List<String> copyList = [];
+    copyList.addAll(itemList);
+    copyList.removeAt(index);
+
+    // copyList 의 데이터들을 '\n' 로 구분하여 문자열로 변환
+    var fileData = "";
+    for (var item in copyList) {
+      fileData += item + "\n";
+    }
+    // 파일 저장
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File(dir.path + '/test.txt').writeAsStringSync(fileData);
+    } catch (e) {
+      print(e);
+      return false;
+    }
+
+    return true;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,24 +116,46 @@ class _FileAppState extends State<FileApp> {
           child: Column(
             children: [
               // TextFied : controller, keyboardType
-              TextField(
-                controller: _controller,
-                keyboardType: TextInputType.text,
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                        controller: _controller,
+                        keyboardType: TextInputType.text,
+                        onSubmitted: (data) {
+                          print(data);
+                          writeListFile(data);
+                          setState(() {
+                            itemList.add(data);
+                          });
+                          _controller.text = '';
+                        },
+                      ),
               ),
-              // 
               const SizedBox(height: 10.0,),
-              // 
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: Center(
-                        child: Text(
-                          itemList[index],
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                      ),
-                    );
+                    return 
+                        GestureDetector(
+                          onLongPress: () async {
+                            // 길게 누른 카드 삭제
+                            bool check = await deleteListFile(index);
+                            if( check ) {
+                              setState(() {
+                                itemList.removeAt(index);
+                              });
+                            }
+                          },
+                          child: Card(
+                                  child: Center(
+                                    child: Text(
+                                      itemList[index],
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
+                                  ),
+                                ),
+                        );
+                        
                   },
                   itemCount: itemList.length,
                 )
@@ -125,6 +171,7 @@ class _FileAppState extends State<FileApp> {
           setState(() {
             itemList.add(_controller.text);
           });
+          _controller.text = '';
         },
         child: Icon(Icons.create),
       ),
